@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AE.CoreInterface" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AE.CoreInterface" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="AlertStates">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="short" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Undefined" />
+      <xs:enumeration value="Detected" />
+      <xs:enumeration value="Cancelled" />
+      <xs:enumeration value="Pending" />
+      <xs:enumeration value="Resolved" />
+      <xs:enumeration value="Ending" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AlertStates" nillable="true" type="tns:AlertStates" />
+</xs:schema>

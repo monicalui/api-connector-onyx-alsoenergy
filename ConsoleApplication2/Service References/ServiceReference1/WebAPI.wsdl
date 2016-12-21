@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="alsoenergy_ns" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WebAPI" targetNamespace="alsoenergy_ns" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_WebAPI1_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="alsoenergy_ns/Imports">
+      <xsd:import schemaLocation="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd0" namespace="alsoenergy_ns" />
+      <xsd:import schemaLocation="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/AlsoEnergyAPI.Data" />
+      <xsd:import schemaLocation="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/AE.CoreInterface" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="WebAPI_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_LoginScada_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginScada" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_LoginScada_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginScadaResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_Logout_InputMessage">
+    <wsdl:part name="parameters" element="tns:Logout" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_Logout_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetSiteHardwareList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSiteHardwareList" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetSiteHardwareList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSiteHardwareListResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetSummaryHardware_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSummaryHardware" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetSummaryHardware_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSummaryHardwareResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetSiteDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSiteDetail" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetSiteDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSiteDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetSiteList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSiteList" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetSiteList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSiteListResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetBinData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBinData" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetBinData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBinDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetSummaryData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSummaryData" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetSummaryData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSummaryDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetAlerts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlerts" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetAlerts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlertsResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetGatewayConfig_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGatewayConfig" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetGatewayConfig_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGatewayConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetGatewayCommands_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGatewayCommands" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetGatewayCommands_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGatewayCommandsResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_SendHeartbeat_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendHeartbeat" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_SendHeartbeat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendHeartbeatResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_SendCommandResult_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendCommandResult" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_SendCommandResult_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendCommandResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_UploadRawData_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadRawData" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_UploadRawData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadRawDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_UploadByteData_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadByteData" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_UploadByteData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadByteDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetTimestamp_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTimestamp" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetTimestamp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTimestampResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetObjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjects" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetObjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_UploadDeviceData_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadDeviceData" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_UploadDeviceData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadDeviceDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetKeysForGateway_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetKeysForGateway" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetKeysForGateway_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetKeysForGatewayResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetChangedKeys_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetChangedKeys" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetChangedKeys_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetChangedKeysResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetTimeZones_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTimeZones" />
+  </wsdl:message>
+  <wsdl:message name="WebAPI_GetTimeZones_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTimeZonesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebAPI">
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/Login" message="tns:WebAPI_Login_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/LoginResponse" message="tns:WebAPI_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginScada">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/LoginScada" message="tns:WebAPI_LoginScada_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/LoginScadaResponse" message="tns:WebAPI_LoginScada_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/Logout" message="tns:WebAPI_Logout_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/LogoutResponse" message="tns:WebAPI_Logout_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteHardwareList">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/GetSiteHardwareList" message="tns:WebAPI_GetSiteHardwareList_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/GetSiteHardwareListResponse" message="tns:WebAPI_GetSiteHardwareList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryHardware">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/GetSummaryHardware" message="tns:WebAPI_GetSummaryHardware_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/GetSummaryHardwareResponse" message="tns:WebAPI_GetSummaryHardware_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteDetail">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/GetSiteDetail" message="tns:WebAPI_GetSiteDetail_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/GetSiteDetailResponse" message="tns:WebAPI_GetSiteDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteList">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/GetSiteList" message="tns:WebAPI_GetSiteList_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/GetSiteListResponse" message="tns:WebAPI_GetSiteList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBinData">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/GetBinData" message="tns:WebAPI_GetBinData_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/GetBinDataResponse" message="tns:WebAPI_GetBinData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryData">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/GetSummaryData" message="tns:WebAPI_GetSummaryData_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/GetSummaryDataResponse" message="tns:WebAPI_GetSummaryData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlerts">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/GetAlerts" message="tns:WebAPI_GetAlerts_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/GetAlertsResponse" message="tns:WebAPI_GetAlerts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGatewayConfig">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/GetGatewayConfig" message="tns:WebAPI_GetGatewayConfig_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/GetGatewayConfigResponse" message="tns:WebAPI_GetGatewayConfig_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGatewayCommands">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/GetGatewayCommands" message="tns:WebAPI_GetGatewayCommands_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/GetGatewayCommandsResponse" message="tns:WebAPI_GetGatewayCommands_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendHeartbeat">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/SendHeartbeat" message="tns:WebAPI_SendHeartbeat_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/SendHeartbeatResponse" message="tns:WebAPI_SendHeartbeat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendCommandResult">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/SendCommandResult" message="tns:WebAPI_SendCommandResult_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/SendCommandResultResponse" message="tns:WebAPI_SendCommandResult_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadRawData">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/UploadRawData" message="tns:WebAPI_UploadRawData_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/UploadRawDataResponse" message="tns:WebAPI_UploadRawData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadByteData">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/UploadByteData" message="tns:WebAPI_UploadByteData_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/UploadByteDataResponse" message="tns:WebAPI_UploadByteData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimestamp">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/GetTimestamp" message="tns:WebAPI_GetTimestamp_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/GetTimestampResponse" message="tns:WebAPI_GetTimestamp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetObjects">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/GetObjects" message="tns:WebAPI_GetObjects_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/GetObjectsResponse" message="tns:WebAPI_GetObjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadDeviceData">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/UploadDeviceData" message="tns:WebAPI_UploadDeviceData_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/UploadDeviceDataResponse" message="tns:WebAPI_UploadDeviceData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKeysForGateway">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/GetKeysForGateway" message="tns:WebAPI_GetKeysForGateway_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/GetKeysForGatewayResponse" message="tns:WebAPI_GetKeysForGateway_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChangedKeys">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/GetChangedKeys" message="tns:WebAPI_GetChangedKeys_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/GetChangedKeysResponse" message="tns:WebAPI_GetChangedKeys_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZones">
+      <wsdl:input wsaw:Action="alsoenergy_ns/WebAPI/GetTimeZones" message="tns:WebAPI_GetTimeZones_InputMessage" />
+      <wsdl:output wsaw:Action="alsoenergy_ns/WebAPI/GetTimeZonesResponse" message="tns:WebAPI_GetTimeZones_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_WebAPI" type="tns:WebAPI">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginScada">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/LoginScada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/Logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteHardwareList">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetSiteHardwareList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryHardware">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetSummaryHardware" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteDetail">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetSiteDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteList">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetSiteList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBinData">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetBinData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryData">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetSummaryData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlerts">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetAlerts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGatewayConfig">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetGatewayConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGatewayCommands">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetGatewayCommands" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendHeartbeat">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/SendHeartbeat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendCommandResult">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/SendCommandResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadRawData">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/UploadRawData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadByteData">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/UploadByteData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimestamp">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetTimestamp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetObjects">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetObjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDeviceData">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/UploadDeviceData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKeysForGateway">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetKeysForGateway" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChangedKeys">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetChangedKeys" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZones">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetTimeZones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_WebAPI1" type="tns:WebAPI">
+    <wsp:PolicyReference URI="#BasicHttpBinding_WebAPI1_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginScada">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/LoginScada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/Logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteHardwareList">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetSiteHardwareList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryHardware">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetSummaryHardware" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteDetail">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetSiteDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteList">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetSiteList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBinData">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetBinData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryData">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetSummaryData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlerts">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetAlerts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGatewayConfig">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetGatewayConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGatewayCommands">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetGatewayCommands" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendHeartbeat">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/SendHeartbeat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendCommandResult">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/SendCommandResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadRawData">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/UploadRawData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadByteData">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/UploadByteData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimestamp">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetTimestamp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetObjects">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetObjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDeviceData">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/UploadDeviceData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKeysForGateway">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetKeysForGateway" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChangedKeys">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetChangedKeys" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZones">
+      <soap:operation soapAction="alsoenergy_ns/WebAPI/GetTimeZones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebAPI">
+    <wsdl:port name="BasicHttpBinding_WebAPI" binding="tns:BasicHttpBinding_WebAPI">
+      <soap:address location="http://www.alsoenergy.com/WebAPI/WebAPI.svc" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_WebAPI1" binding="tns:BasicHttpBinding_WebAPI1">
+      <soap:address location="https://650607-web2.iad.intensive.int/WebAPI/WebAPI.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

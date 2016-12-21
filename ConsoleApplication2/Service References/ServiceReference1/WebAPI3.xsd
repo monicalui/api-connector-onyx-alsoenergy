@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AlsoEnergyAPI.Data" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AlsoEnergyAPI.Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:import schemaLocation="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/AE.CoreInterface" />
+  <xs:complexType name="LoginResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AE_Admin" type="xs:boolean" />
+          <xs:element minOccurs="0" name="CustomerID" type="xs:int" />
+          <xs:element minOccurs="0" name="SessionID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserID" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LoginResult" nillable="true" type="tns:LoginResult" />
+  <xs:complexType name="Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Result" nillable="true" type="tns:Result" />
+  <xs:complexType name="HardwareCompleteListResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="HardwareList" nillable="true" type="tns:ArrayOfHardwareComplete" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HardwareCompleteListResult" nillable="true" type="tns:HardwareCompleteListResult" />
+  <xs:complexType name="ArrayOfHardwareComplete">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HardwareComplete" nillable="true" type="tns:HardwareComplete" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHardwareComplete" nillable="true" type="tns:ArrayOfHardwareComplete" />
+  <xs:complexType name="HardwareComplete">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Hardware">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FieldList" nillable="true" type="tns:ArrayOfFieldInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HardwareComplete" nillable="true" type="tns:HardwareComplete" />
+  <xs:complexType name="Hardware">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Baud" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DeviceAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DeviceCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DeviceID" type="xs:int" />
+      <xs:element minOccurs="0" name="DeviceNum" type="xs:int" />
+      <xs:element minOccurs="0" name="Flags" type="xs:int" />
+      <xs:element minOccurs="0" name="GatewayID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HardwareID" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Mask" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Port" type="xs:anyType">
+        <xs:annotation>
+          <xs:appinfo>
+            <ActualType Name="int" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="SerialNum" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SiteID" type="xs:int" />
+      <xs:element minOccurs="0" name="Sort" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Hardware" nillable="true" type="tns:Hardware" />
+  <xs:complexType name="Gateway">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Hardware">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GatewayType" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Gateway" nillable="true" type="tns:Gateway" />
+  <xs:complexType name="Inverter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Hardware">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Address" type="xs:unsignedInt" />
+          <xs:element minOccurs="0" name="ArrayModel" nillable="true" type="tns:ArrayModel" />
+          <xs:element minOccurs="0" name="InverterModel" nillable="true" type="tns:InverterModel" />
+          <xs:element minOccurs="0" name="PanelModel" nillable="true" type="tns:PanelModel" />
+          <xs:element minOccurs="0" name="PanelMounting" nillable="true" type="tns:PanelMounting" />
+          <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PerformanceEstimate" nillable="true" type="q2:ArrayOfint" />
+          <xs:element minOccurs="0" name="Port" type="xs:anyType">
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="short" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="SerialNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="YearlyPerformanceEstimate" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Inverter" nillable="true" type="tns:Inverter" />
+  <xs:complexType name="ArrayModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Derate" type="xs:double" />
+      <xs:element minOccurs="0" name="NumberOfStrings" type="xs:int" />
+      <xs:element minOccurs="0" name="PanelsPerString" type="xs:int" />
+      <xs:element minOccurs="0" name="YearlyDegrade" type="xs:double" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="YearlyDegrade2" nillable="true" type="q3:ArrayOfdouble" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayModel" nillable="true" type="tns:ArrayModel" />
+  <xs:complexType name="InverterModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ACvoltsMax" type="xs:double" />
+      <xs:element minOccurs="0" name="DCampsMax" type="xs:double" />
+      <xs:element minOccurs="0" name="DCvoltsMax" type="xs:double" />
+      <xs:element minOccurs="0" name="InverterKW" type="xs:double" />
+      <xs:element minOccurs="0" name="InverterLoss" type="xs:int" />
+      <xs:element minOccurs="0" name="Model" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InverterModel" nillable="true" type="tns:InverterModel" />
+  <xs:complexType name="PanelModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MPPamps" type="xs:double" />
+      <xs:element minOccurs="0" name="MPPvolts" type="xs:double" />
+      <xs:element minOccurs="0" name="TempCoefficient" type="xs:double" />
+      <xs:element minOccurs="0" name="WattsPerPanel" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PanelModel" nillable="true" type="tns:PanelModel" />
+  <xs:complexType name="PanelMounting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Azimuth" type="xs:double" />
+      <xs:element minOccurs="0" name="Mounting" type="xs:int" />
+      <xs:element minOccurs="0" name="Tilt" type="xs:double" />
+      <xs:element minOccurs="0" name="Tracking" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PanelMounting" nillable="true" type="tns:PanelMounting" />
+  <xs:complexType name="StringCombiner">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Hardware">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ZonesIO" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StringCombiner" nillable="true" type="tns:StringCombiner" />
+  <xs:complexType name="ArrayOfFieldInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FieldInfo" nillable="true" type="tns:FieldInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFieldInfo" nillable="true" type="tns:ArrayOfFieldInfo" />
+  <xs:complexType name="FieldInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Units" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FieldInfo" nillable="true" type="tns:FieldInfo" />
+  <xs:complexType name="SiteDetailResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SiteResult">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="LastCommunicationDate" type="q4:DateTimeOffset" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SiteDetailResult" nillable="true" type="tns:SiteDetailResult" />
+  <xs:complexType name="SiteResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Data" nillable="true" type="tns:Site" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SiteResult" nillable="true" type="tns:SiteResult" />
+  <xs:complexType name="Site">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerID" type="xs:int" />
+      <xs:element minOccurs="0" name="Flags" type="xs:int" />
+      <xs:element minOccurs="0" name="GPSLocation" nillable="true" type="tns:Coordinates" />
+      <xs:element minOccurs="0" name="InstallDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="tns:Address" />
+      <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Mask" nillable="true" type="q5:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+      <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PerformanceEstimate" nillable="true" type="q6:ArrayOfint" />
+      <xs:element minOccurs="0" name="SiteID" type="xs:int" />
+      <xs:element minOccurs="0" name="TagLine" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Term" type="xs:int" />
+      <xs:element minOccurs="0" name="TimeZone" nillable="true" type="tns:TimeZone" />
+      <xs:element minOccurs="0" name="TurnOnDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValidDataDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="YearlyDegrade" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Site" nillable="true" type="tns:Site" />
+  <xs:complexType name="Coordinates">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Elevation" type="xs:short" />
+      <xs:element minOccurs="0" name="Latitude" type="xs:double" />
+      <xs:element minOccurs="0" name="Longitude" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Coordinates" nillable="true" type="tns:Coordinates" />
+  <xs:complexType name="Address">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Zip" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Address" nillable="true" type="tns:Address" />
+  <xs:complexType name="TimeZone">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GMTOffset" type="xs:double" />
+      <xs:element minOccurs="0" name="IsDaylightSaving" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TimeZone" nillable="true" type="tns:TimeZone" />
+  <xs:complexType name="ListResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfListItem" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ListResult" nillable="true" type="tns:ListResult" />
+  <xs:complexType name="ArrayOfListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ListItem" nillable="true" type="tns:ListItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfListItem" nillable="true" type="tns:ArrayOfListItem" />
+  <xs:complexType name="ListItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListItem" nillable="true" type="tns:ListItem" />
+  <xs:simpleType name="BinSizes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BinRaw" />
+      <xs:enumeration value="Bin15Min">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">15</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Bin1Hour">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">60</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BinDay">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1440</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BinMonth">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">44640</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BinYear">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">527040</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BinSizes" nillable="true" type="tns:BinSizes" />
+  <xs:complexType name="ArrayOfDataField">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DataField" nillable="true" type="tns:DataField" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDataField" nillable="true" type="tns:ArrayOfDataField" />
+  <xs:complexType name="DataField">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FieldName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Function" type="tns:Functions" />
+      <xs:element minOccurs="0" name="HID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DataField" nillable="true" type="tns:DataField" />
+  <xs:simpleType name="Functions">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Avg" />
+      <xs:enumeration value="Last" />
+      <xs:enumeration value="Min" />
+      <xs:enumeration value="Max" />
+      <xs:enumeration value="Diff" />
+      <xs:enumeration value="Sum" />
+      <xs:enumeration value="Integral" />
+      <xs:enumeration value="DiffNonZero">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Functions" nillable="true" type="tns:Functions" />
+  <xs:complexType name="DataResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DataSet" nillable="true" type="tns:ArrayOfDataBin" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DataResult" nillable="true" type="tns:DataResult" />
+  <xs:complexType name="ArrayOfDataBin">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DataBin" nillable="true" type="tns:DataBin" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDataBin" nillable="true" type="tns:ArrayOfDataBin" />
+  <xs:complexType name="DataBin">
+    <xs:sequence>
+      <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Data" nillable="true" type="q7:ArrayOffloat" />
+      <xs:element minOccurs="0" name="Timestamp" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DataBin" nillable="true" type="tns:DataBin" />
+  <xs:complexType name="AlertCompleteListResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AlertList" nillable="true" type="tns:ArrayOfAlertComplete" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AlertCompleteListResult" nillable="true" type="tns:AlertCompleteListResult" />
+  <xs:complexType name="ArrayOfAlertComplete">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AlertComplete" nillable="true" type="tns:AlertComplete" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAlertComplete" nillable="true" type="tns:ArrayOfAlertComplete" />
+  <xs:complexType name="AlertComplete">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Alert">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AlertComplete" nillable="true" type="tns:AlertComplete" />
+  <xs:complexType name="Alert">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlertID" type="xs:int" />
+      <xs:element minOccurs="0" name="End" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="HID" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SiteID" type="xs:int" />
+      <xs:element minOccurs="0" name="Start" type="xs:dateTime" />
+      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/AE.CoreInterface" minOccurs="0" name="State" type="q8:AlertStates" />
+      <xs:element minOccurs="0" name="SubCode" type="xs:int" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Alert" nillable="true" type="tns:Alert" />
+  <xs:complexType name="GatewayConfigResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ServerTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="devices" nillable="true" type="tns:ArrayOfDeviceConfig" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GatewayConfigResult" nillable="true" type="tns:GatewayConfigResult" />
+  <xs:complexType name="ArrayOfDeviceConfig">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DeviceConfig" nillable="true" type="tns:DeviceConfig" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDeviceConfig" nillable="true" type="tns:ArrayOfDeviceConfig" />
+  <xs:complexType name="DeviceConfig">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ArraySN" nillable="true" type="q9:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Baud" type="xs:int" />
+      <xs:element minOccurs="0" name="ComType" type="tns:DeviceConfig.ComTypes" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DeviceType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HIDInt" type="xs:int" />
+      <xs:element minOccurs="0" name="Params" nillable="true" type="tns:ArrayOfNameVal" />
+      <xs:element minOccurs="0" name="PollDelaySeconds" type="xs:int" />
+      <xs:element minOccurs="0" name="Port" type="xs:int" />
+      <xs:element minOccurs="0" name="Registers" nillable="true" type="tns:ArrayOfRegInfo" />
+      <xs:element minOccurs="0" name="SerialNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeviceConfig" nillable="true" type="tns:DeviceConfig" />
+  <xs:simpleType name="DeviceConfig.ComTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Undefined" />
+      <xs:enumeration value="RS232" />
+      <xs:enumeration value="RS485_2Wire" />
+      <xs:enumeration value="RS485_4Wire" />
+      <xs:enumeration value="TCP" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DeviceConfig.ComTypes" nillable="true" type="tns:DeviceConfig.ComTypes" />
+  <xs:complexType name="ArrayOfNameVal">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NameVal" nillable="true" type="tns:NameVal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNameVal" nillable="true" type="tns:ArrayOfNameVal" />
+  <xs:complexType name="NameVal">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Val" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NameVal" nillable="true" type="tns:NameVal" />
+  <xs:complexType name="ArrayOfRegInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RegInfo" nillable="true" type="tns:RegInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRegInfo" nillable="true" type="tns:ArrayOfRegInfo" />
+  <xs:complexType name="RegInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DataType" type="tns:RawDataType" />
+      <xs:element minOccurs="0" name="NumBytes" type="xs:int" />
+      <xs:element minOccurs="0" name="RegName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegNum" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RegInfo" nillable="true" type="tns:RegInfo" />
+  <xs:simpleType name="RawDataType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Int" />
+      <xs:enumeration value="Float" />
+      <xs:enumeration value="String" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="RawDataType" nillable="true" type="tns:RawDataType" />
+  <xs:complexType name="CommandsResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CommandList" nillable="true" type="tns:ArrayOfCommand" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CommandsResult" nillable="true" type="tns:CommandsResult" />
+  <xs:complexType name="ArrayOfCommand">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Command" nillable="true" type="tns:Command" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCommand" nillable="true" type="tns:ArrayOfCommand" />
+  <xs:complexType name="Command">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cmd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Param" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Command" nillable="true" type="tns:Command" />
+  <xs:complexType name="Heartbeat">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Build" nillable="true" type="xs:string" />
+      <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="FirmwareVer" nillable="true" type="q10:ArrayOfstring" />
+      <xs:element minOccurs="0" name="GWtype" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IPaddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastBoot" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Model" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Params" nillable="true" type="tns:ArrayOfNameVal" />
+      <xs:element minOccurs="0" name="Version" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Heartbeat" nillable="true" type="tns:Heartbeat" />
+  <xs:complexType name="HeartbeatResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Command" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CommandID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CommandParam" nillable="true" type="xs:string" />
+          <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DownloadFirmware" nillable="true" type="q11:ArrayOfstring" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HeartbeatResult" nillable="true" type="tns:HeartbeatResult" />
+  <xs:complexType name="ArrayOfUploadData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UploadData" nillable="true" type="tns:UploadData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUploadData" nillable="true" type="tns:ArrayOfUploadData" />
+  <xs:complexType name="UploadData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Data" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsLog" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NotResponding" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RegDataList" nillable="true" type="tns:ArrayOfRegData" />
+      <xs:element minOccurs="0" name="Timestamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UploadData" nillable="true" type="tns:UploadData" />
+  <xs:complexType name="ArrayOfRegData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RegData" nillable="true" type="tns:RegData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRegData" nillable="true" type="tns:ArrayOfRegData" />
+  <xs:complexType name="RegData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Data" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RegData" nillable="true" type="tns:RegData" />
+  <xs:complexType name="UploadResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="UploadCount" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UploadResult" nillable="true" type="tns:UploadResult" />
+  <xs:complexType name="TimestampResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="LastData" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="LastUpdate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ServerUTC" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TimestampResult" nillable="true" type="tns:TimestampResult" />
+  <xs:complexType name="ObjectsResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Result">
+        <xs:sequence>
+          <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Objects" nillable="true" type="q12:ArrayOfstring" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ObjectsResult" nillable="true" type="tns:ObjectsResult" />
+  <xs:complexType name="KeysResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Result">
+        <xs:sequence>
+          <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Keys" nillable="true" type="q13:ArrayOfint" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="KeysResult" nillable="true" type="tns:KeysResult" />
+  <xs:complexType name="ByteObjectsResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Result">
+        <xs:sequence>
+          <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Objects" nillable="true" type="q14:ArrayOfbase64Binary" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ByteObjectsResult" nillable="true" type="tns:ByteObjectsResult" />
+</xs:schema>

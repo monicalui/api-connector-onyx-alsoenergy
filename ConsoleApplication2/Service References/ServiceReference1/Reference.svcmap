@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6756264e-655e-402f-94eb-94f2bd2a2b49" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://www.alsoenergy.com/WebAPI/WebAPI.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WebAPI.xsd" MetadataType="Schema" ID="8487fcbf-54bb-4446-a125-dac642c870c5" SourceId="1" SourceUrl="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd4" />
+    <MetadataFile FileName="WebAPI1.xsd" MetadataType="Schema" ID="6a866e0a-9767-45f8-8a0d-21b9f05f3122" SourceId="1" SourceUrl="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd5" />
+    <MetadataFile FileName="WebAPI2.xsd" MetadataType="Schema" ID="2717041e-45ce-47f9-8384-c26d7ef4ce30" SourceId="1" SourceUrl="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd0" />
+    <MetadataFile FileName="WebAPI3.xsd" MetadataType="Schema" ID="7ad04950-8cf9-4493-9ad6-97ad9293074f" SourceId="1" SourceUrl="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd2" />
+    <MetadataFile FileName="WebAPI4.xsd" MetadataType="Schema" ID="ed2296a4-1461-4858-b1cb-4b300b975deb" SourceId="1" SourceUrl="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd3" />
+    <MetadataFile FileName="WebAPI5.xsd" MetadataType="Schema" ID="d455ea67-f093-4970-b376-976fe38329a7" SourceId="1" SourceUrl="http://www.alsoenergy.com/WebAPI/WebAPI.svc?xsd=xsd1" />
+    <MetadataFile FileName="WebAPI.wsdl" MetadataType="Wsdl" ID="91224263-367f-4f10-91f6-3ef1243ed082" SourceId="1" SourceUrl="http://www.alsoenergy.com/WebAPI/WebAPI.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
